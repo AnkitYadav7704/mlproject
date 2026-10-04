@@ -2,7 +2,7 @@ import sys
 from dataclasses import dataclass
 
 import numpy as np 
-import pandas as pd
+import pandas as pd  # type: ignore[import-not-found]
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
