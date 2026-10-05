@@ -333,6 +333,11 @@
         <div class="header">
             <h1>Student Exam Performance Indicator</h1>
             <p>Predict your Maths Score based on your academic information</p>
+            <p style="margin-top: 15px;">
+                <a href="/details" style="display: inline-block; padding: 8px 16px; background-color: #e0e7ff; color: #4338ca; border-radius: 20px; text-decoration: none; font-weight: 600; font-size: 14px; transition: background-color 0.2s;">
+                    View Project Details &rarr;
+                </a>
+            </p>
         </div>
 
 
@@ -555,7 +560,20 @@
             </div>
 
 
-            <!-- Information -->
+            <!-- Information / Result -->
+            {% if results %}
+            <div class="info-section" style="align-items: center; text-align: center; background: linear-gradient(160deg, #f0fdf4, #dcfce7);">
+                <div class="info-icon" style="background: #22c55e; width: 85px; height: 85px; font-size: 40px;">
+                    📈
+                </div>
+                <h2 style="color: #16a34a; font-size: 26px; margin-top: 10px;">Prediction Result</h2>
+                <p style="color: #15803d; font-size: 16px;">The predicted Maths score is:</p>
+                <div style="font-size: 55px; font-weight: 800; color: #166534; margin-top: 15px;">
+                    {{results}}
+                </div>
+                <p style="margin-top: 25px;"><a href="/" style="display: inline-block; padding: 10px 20px; background-color: #16a34a; color: #fff; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px; transition: background-color 0.2s;">Predict Another</a></p>
+            </div>
+            {% else %}
             <div class="info-section">
 
                 <div class="info-icon">
@@ -613,32 +631,12 @@
                 </div>
 
             </div>
+            {% endif %}
 
         </div>
 
 
-        <!-- Result -->
-        <div class="result-card">
-
-            <div class="result-icon">
-                📈
-            </div>
-
-            <div class="result-content">
-
-                <h2>Prediction Result</h2>
-
-                <p>
-                    The predicted Maths score is:
-                </p>
-
-            </div>
-
-            <div class="result-value">
-                {{results}}
-            </div>
-
-        </div>
+        <!-- Result handled inside the info-section above -->
 
     </div>
 

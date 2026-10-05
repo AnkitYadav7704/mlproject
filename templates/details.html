@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        p {
+            line-height: 1.6;
+        }
+        ul {
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+        .highlight {
+            background-color: #e8f4f8;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #2980b9;
+        }
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+            color: #7f8c8d;
+        }
+        a.btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        a.btn:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Table Styles */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.95em;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+            border-radius: 8px 8px 0 0;
+            overflow: hidden;
+        }
+        .styled-table thead tr {
+            background-color: #34495e;
+            color: #ffffff;
+            text-align: left;
+        }
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .styled-table tbody tr:last-of-type {
+            border-bottom: 2px solid #34495e;
+        }
+        .styled-table tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+        .styled-table td code {
+            background-color: #f1f2f6;
+            padding: 2px 5px;
+            border-radius: 3px;
+            color: #e74c3c;
+            font-family: Consolas, monospace;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Machine Learning Project Details</h1>
+
+    <h2>1. Custom Exception Handling & Logging</h2>
+    <p>As a foundational step, we set up robust monitoring and error tracking:</p>
+    <ul>
+        <li><strong>Logger:</strong> Implemented a custom logging mechanism (<code>src.logger</code>) to record all the execution steps, errors, and system events into log files for easy debugging.</li>
+        <li><strong>Exception Handling:</strong> Created a custom exception class (<code>src.exception.CustomException</code>) that captures detailed error messages, including the exact script name and line number where the issue occurred, making it significantly easier to trace bugs.</li>
+    </ul>
+    
+    <h2>2. Data Source</h2>
+    <p>The dataset used for this project is <span class="highlight">stud.csv</span>, which contains details regarding student performance. It was ingested locally from the notebook data directory.</p>
+    
+    <h2>3. Handling Missing (NaN) Values</h2>
+    <p>We addressed missing values using the <span class="highlight">SimpleImputer</span> class from <code>sklearn.impute</code>. Specifically:</p>
+    <ul>
+        <li><strong>Numerical Features:</strong> Imputed using the <em>median</em> strategy.</li>
+        <li><strong>Categorical Features:</strong> Imputed using the <em>most frequent</em> (mode) strategy.</li>
+    </ul>
+
+    <h2>4. Data Transformation Pipeline</h2>
+    <p>The data was processed using a <code>ColumnTransformer</code> to apply specialized pipelines to different types of data:</p>
+    <ul>
+        <li><strong>Numerical Columns</strong> (<code>writing_score</code>, <code>reading_score</code>): After imputation, the data was standardized using <span class="highlight">StandardScaler</span>.</li>
+        <li><strong>Categorical Columns</strong> (<code>gender</code>, <code>race_ethnicity</code>, <code>parental_level_of_education</code>, <code>lunch</code>, <code>test_preparation_course</code>): After imputation, the features were encoded using <span class="highlight">OneHotEncoder</span> and subsequently scaled using <code>StandardScaler(with_mean=False)</code>.</li>
+        <li>The target variable for prediction is <strong><code>math_score</code></strong>.</li>
+    </ul>
+
+    <h2>5. Models Trained</h2>
+    <p>We trained and evaluated a variety of robust machine learning regressors to find the best-performing model:</p>
+    <ul>
+        <li>Random Forest Regressor</li>
+        <li>Decision Tree Regressor</li>
+        <li>Gradient Boosting Regressor</li>
+        <li>Linear Regression</li>
+        <li>XGBoost Regressor (XGBRegressor)</li>
+        <li>CatBoost Regressor</li>
+        <li>AdaBoost Regressor</li>
+    </ul>
+
+    <h2>6. Hyperparameter Tuning</h2>
+    <p>To maximize model performance, we performed comprehensive hyperparameter tuning using grid search methods. The exact parameter grid used for each model is detailed below:</p>
+    
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Model</th>
+                <th>Parameter</th>
+                <th>Values Evaluated</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Decision Tree</strong></td>
+                <td><code>criterion</code></td>
+                <td><code>['squared_error', 'friedman_mse', 'absolute_error', 'poisson']</code></td>
+            </tr>
+            <tr>
+                <td><strong>Random Forest</strong></td>
+                <td><code>n_estimators</code></td>
+                <td><code>[8, 16, 32, 64, 128, 256]</code></td>
+            </tr>
+            <tr>
+                <td rowspan="3"><strong>Gradient Boosting</strong></td>
+                <td><code>learning_rate</code></td>
+                <td><code>[0.1, 0.01, 0.05, 0.001]</code></td>
+            </tr>
+            <tr>
+                <td><code>subsample</code></td>
+                <td><code>[0.6, 0.7, 0.75, 0.8, 0.85, 0.9]</code></td>
+            </tr>
+            <tr>
+                <td><code>n_estimators</code></td>
+                <td><code>[8, 16, 32, 64, 128, 256]</code></td>
+            </tr>
+            <tr>
+                <td><strong>Linear Regression</strong></td>
+                <td colspan="2"><em>No specific hyperparameters tuned</em></td>
+            </tr>
+            <tr>
+                <td rowspan="2"><strong>XGBRegressor</strong></td>
+                <td><code>learning_rate</code></td>
+                <td><code>[0.1, 0.01, 0.05, 0.001]</code></td>
+            </tr>
+            <tr>
+                <td><code>n_estimators</code></td>
+                <td><code>[8, 16, 32, 64, 128, 256]</code></td>
+            </tr>
+            <tr>
+                <td rowspan="3"><strong>CatBoosting Regressor</strong></td>
+                <td><code>depth</code></td>
+                <td><code>[6, 8, 10]</code></td>
+            </tr>
+            <tr>
+                <td><code>learning_rate</code></td>
+                <td><code>[0.01, 0.05, 0.1]</code></td>
+            </tr>
+            <tr>
+                <td><code>iterations</code></td>
+                <td><code>[30, 50, 100]</code></td>
+            </tr>
+            <tr>
+                <td rowspan="2"><strong>AdaBoost Regressor</strong></td>
+                <td><code>learning_rate</code></td>
+                <td><code>[0.1, 0.01, 0.5, 0.001]</code></td>
+            </tr>
+            <tr>
+                <td><code>n_estimators</code></td>
+                <td><code>[8, 16, 32, 64, 128, 256]</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>7. Frontend & Deployment</h2>
+    <p>At the end of the project, we built an interactive web interface using <span class="highlight">Flask</span>. This frontend allows users to input specific student demographics and scores, and receive a predicted math score via our trained data pipeline and best model. The final application has been successfully deployed on <span class="highlight">Render</span>, making the model easily accessible over the web.</p>
+
+    <div style="text-align: center;">
+        <a href="/" class="btn">Back to Prediction Home</a>
+    </div>
+
+    <div class="footer">
+        <p>&copy; End-to-End Student Performance Prediction Machine Learning Project</p>
+    </div>
+</div>
+
+</body>
+</html>
